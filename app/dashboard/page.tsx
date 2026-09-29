@@ -73,7 +73,7 @@ export default async function DashboardPage({
               Previous Day Expense
             </span>
             <div className="text-2xl font-bold mt-1 text-slate-900 dark:text-white">
-              ${previousDayExpense.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              ₦{previousDayExpense.toLocaleString('en-US', { minimumFractionDigits: 2 })}
             </div>
             <p className="text-[11px] text-slate-400 mt-1">Full 24-hour cycle of yesterday</p>
           </div>
@@ -83,7 +83,7 @@ export default async function DashboardPage({
               Previous Week Expense
             </span>
             <div className="text-2xl font-bold mt-1 text-slate-900 dark:text-white">
-              ${previousWeekExpense.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              ₦{previousWeekExpense.toLocaleString('en-US', { minimumFractionDigits: 2 })}
             </div>
             <p className="text-[11px] text-slate-400 mt-1">Total outflow from last complete week</p>
           </div>
@@ -93,7 +93,7 @@ export default async function DashboardPage({
               Previous Month Expense
             </span>
             <div className="text-2xl font-bold mt-1 text-slate-900 dark:text-white">
-              ${previousMonthExpense.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+              ₦{previousMonthExpense.toLocaleString('en-US', { minimumFractionDigits: 2 })}
             </div>
             <p className="text-[11px] text-slate-400 mt-1">Total outflow from prior calendar month</p>
           </div>

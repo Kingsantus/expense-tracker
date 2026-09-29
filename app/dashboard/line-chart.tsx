@@ -54,7 +54,7 @@ export default function TwoSeriesLineChart({ data }: { data: ChartDataPoint[] })
                 strokeDasharray="4 4"
               />
               <text x={padding - 10} y={y + 4} textAnchor="end" className="text-[10px] fill-slate-400">
-                ${valLabel}
+                ₦{valLabel}
               </text>
             </g>
           );
@@ -89,10 +89,10 @@ export default function TwoSeriesLineChart({ data }: { data: ChartDataPoint[] })
         <div className="absolute top-2 right-4 bg-slate-900/90 text-white dark:bg-white/90 dark:text-slate-900 p-3 rounded-lg shadow-lg text-xs backdrop-blur-sm pointer-events-none">
           <div className="font-semibold mb-1">{data[hoveredIdx].label}</div>
           <div className="text-emerald-400 dark:text-emerald-600 font-medium">
-            Income: +${data[hoveredIdx].income.toFixed(2)}
+            Income: +₦{data[hoveredIdx].income.toFixed(2)}
           </div>
           <div className="text-rose-400 dark:text-rose-600 font-medium">
-            Expense: -${data[hoveredIdx].expense.toFixed(2)}
+            Expense: -₦{data[hoveredIdx].expense.toFixed(2)}
           </div>
         </div>
       )}

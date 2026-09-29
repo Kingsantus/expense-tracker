@@ -34,11 +34,11 @@ export default function AiAdvisor({ categories }: { categories: CategoryBreakdow
       <div className="p-4 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-sm space-y-2">
         <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
           <strong className="text-slate-900 dark:text-white capitalize">{topCategory.category.replace('_', ' ')}</strong> accounts for{' '}
-          <strong className="text-indigo-600 dark:text-indigo-400">{topCategoryShare}%</strong> of your monthly outgoings (${topCategory.total.toFixed(2)}). Specifically,{' '}
-          <strong className="text-slate-900 dark:text-white">{topSubcategory?.subcategory || 'general items'}</strong> consumed ${topSubcategory?.total.toFixed(2)}.
+          <strong className="text-indigo-600 dark:text-indigo-400">{topCategoryShare}%</strong> of your monthly outgoings (₦{topCategory.total.toFixed(2)}). Specifically,{' '}
+          <strong className="text-slate-900 dark:text-white">{topSubcategory?.subcategory || 'general items'}</strong> consumed ₦{topSubcategory?.total.toFixed(2)}.
         </p>
         <p className="text-xs text-slate-500 dark:text-slate-400 italic">
-          💡 Recommendation: Protect non-negotiables like healthcare, essential utilities, and proper nutrition. Focus adjustments on non-essential recurring items in {topSubcategory?.subcategory} to save approximately ${((topCategory.total) * 0.15).toFixed(2)} this month without straining your lifestyle.
+          💡 Recommendation: Protect non-negotiables like healthcare, essential utilities, and proper nutrition. Focus adjustments on non-essential recurring items in {topSubcategory?.subcategory} to save approximately ₦{((topCategory.total) * 0.15).toFixed(2)} this month without straining your lifestyle.
         </p>
       </div>
 
@@ -57,7 +57,7 @@ export default function AiAdvisor({ categories }: { categories: CategoryBreakdow
                     {cat.category.replace('_', ' ')}
                   </span>
                   <span className="text-slate-600 dark:text-slate-400">
-                    ${cat.total.toFixed(2)} ({pct}%)
+                    ₦{cat.total.toFixed(2)} ({pct}%)
                   </span>
                 </div>
                 <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
@@ -66,7 +66,7 @@ export default function AiAdvisor({ categories }: { categories: CategoryBreakdow
                 <div className="flex flex-wrap gap-1.5 pt-1">
                   {cat.subcategories.map((sub) => (
                     <span key={sub.subcategory} className="text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-md">
-                      {sub.subcategory}: ${sub.total.toFixed(2)}
+                      {sub.subcategory}: ₦{sub.total.toFixed(2)}
                     </span>
                   ))}
                 </div>
