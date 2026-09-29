@@ -2,6 +2,8 @@ import db from '../utils/index';
 import { income } from '../db/schema';
 import { eq, desc, sql } from 'drizzle-orm';
 import IncomeForm from './income-form';
+import Link from 'next/link';
+import SignOutButton from '../components/sign-out-button';
 import { deleteIncomeAction } from '../api/actions/income';
 
 export default async function IncomePage() {
@@ -28,11 +30,32 @@ export default async function IncomePage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+      <header className="border-b border-slate-200 dark:border-slate-800 sticky top-0 z-20">
+        <div className="h-16 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <span className="font-bold text-lg text-emerald-600 dark:text-emerald-400">ExpenseTracker</span>
+            <nav className="hidden sm:flex items-center gap-4 text-sm font-medium">
+              <Link href="/dashboard" className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition" >
+                Dashboard
+              </Link>
+              <Link href="/income" className="text-slate-900 dark:text-white border-b-2 border-emerald-500 py-4">
+                Income
+              </Link>
+              <Link href="/expense" className="text-slate-500 hover:text-slate-900 dark:hover:text-white transition">
+                Expense
+              </Link>
+            </nav>
+          </div>
+
+          {/* Better Auth Sign Out Trigger */}
+          <SignOutButton />
+        </div>
+      </header>
       {/* Header and Summary stats */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-            Income Dashboard
+            Income
           </h1>
           <p className="text-sm text-slate-500">
             Log and audit all incoming revenue streams and disbursements.
