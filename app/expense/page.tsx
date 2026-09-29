@@ -5,10 +5,22 @@ import ExpenseForm from './expense-form';
 import Link from 'next/link';
 import SignOutButton from '../components/sign-out-button';
 import { deleteExpenseAction } from '../api/actions/expense';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { auth } from '../lib/auth';
 
 export default async function ExpensePage() {
-  // Replace with authenticated session user ID from Better Auth or Supabase
-  const currentUserId = 'user_current_session_id';
+  const requestHeaders = await headers();
+
+  const session = await auth.api.getSession({
+    headers: requestHeaders,
+  });
+
+  if (!session?.user?.id) {
+    redirect('/login');
+  }
+
+  const currentUserId = session.user.id;
 
   // Parallel fetch: expenses list and total outgoings
   const [expenseList, aggregates] = await Promise.all([

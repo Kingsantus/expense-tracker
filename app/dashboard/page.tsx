@@ -3,14 +3,27 @@ import { getDashboardMetrics, TimeInterval } from '../api/actions/dashboard';
 import SignOutButton from '../components/sign-out-button';
 import TwoSeriesLineChart from './line-chart';
 import AiAdvisor from './ai-advisor';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { auth } from '../lib/auth';
 
 export default async function DashboardPage({
   searchParams,
 }: {
   searchParams: Promise<{ interval?: string }>;
 }) {
-  // Replace with the user id from your Better Auth session
-  const currentUserId = 'user_current_session_id';
+  const requestHeaders = await headers();
+    
+  const session = await auth.api.getSession({
+    headers: requestHeaders,
+  });
+    
+  if (!session?.user?.id) {
+    redirect('/login');
+  }
+  
+  const currentUserId = session.user.id;
+
   const resolvedParams = await searchParams;
   const interval = (resolvedParams.interval as TimeInterval) || '24h';
 

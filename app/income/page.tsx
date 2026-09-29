@@ -5,10 +5,23 @@ import IncomeForm from './income-form';
 import Link from 'next/link';
 import SignOutButton from '../components/sign-out-button';
 import { deleteIncomeAction } from '../api/actions/income';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { auth } from '../lib/auth';
 
 export default async function IncomePage() {
-  // Replace with your authenticated session user id from Better Auth or Supabase
-  const currentUserId = 'user_current_session_id';
+
+  const requestHeaders = await headers();
+  
+  const session = await auth.api.getSession({
+    headers: requestHeaders,
+  });
+  
+  if (!session?.user?.id) {
+    redirect('/login');
+  }
+
+  const currentUserId = session.user.id;
 
   // Parallel query: list items and compute aggregations
   const [incomeList, aggregates] = await Promise.all([
