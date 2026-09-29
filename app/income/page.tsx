@@ -23,7 +23,7 @@ export default async function IncomePage() {
 
   const currentUserId = session.user.id;
 
-  // Parallel query: list items and compute aggregations
+  // Parallel query: list items and compute aggregation
   const [incomeList, aggregates] = await Promise.all([
     db
       .select()
